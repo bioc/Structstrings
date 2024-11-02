@@ -37,7 +37,7 @@ long *get_base_pairing_per_char_pair(R_xlen_t length, const char *str, char brac
     } else if(str[i-1] == bracket_close){
       j = stack[--hx];
       if (hx<0) {
-        error("unbalanced '%s%s' brackets in dot bracket structure", bracket_open, bracket_close);
+        error("unbalanced '%s%s' brackets in dot bracket structure", &bracket_open, &bracket_close);
         free(stack);
         return NULL;
       }
@@ -49,7 +49,7 @@ long *get_base_pairing_per_char_pair(R_xlen_t length, const char *str, char brac
   }
   free(stack);
   if (hx != 0) {
-    error("unbalanced '%s%s' brackets in dot bracket structure", bracket_open,  bracket_close);
+    error("unbalanced '%s%s' brackets in dot bracket structure", &bracket_open, &bracket_close);
     return NULL;
   }
   return(table);
